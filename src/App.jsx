@@ -3,7 +3,7 @@ import AppStyles from 'styled-components';
 import './css/App.css';
 
 const Apps = AppStyles.div`
-    height: 687px;
+    height: 900px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
