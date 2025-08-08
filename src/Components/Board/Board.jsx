@@ -1,5 +1,5 @@
 import BoardStyles from '../../css/Board.module.css';
-import Squares from './Squares';
+import Squares from './Square';
 
 function Board() {
     const squares = Array(3).fill(Array(3).fill(null));
