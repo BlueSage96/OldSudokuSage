@@ -92,7 +92,7 @@ function Cell({ row, col }) {
           if (sq[0] === row && sq[1] === col) query.other = true;
       });
       if (selectedCell.row === row) query.other = true;
-      if (selectedCell.col === row) query.other = true;
+      if (selectedCell.col === col) query.other = true;
       
       if (qBoard[row][col].value === qBoard[selectedCell.row][selectedCell.col].value && qBoard[row][col].value !== 0) {
          query.other = true;
