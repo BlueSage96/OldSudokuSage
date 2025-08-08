@@ -6,8 +6,24 @@ function Board() {
     const { time, isPause, startGAme, mistake, totalMistakes, isComplete, mode, changeQBoard, tryAgain } = gameState();
     const squares = Array(3).fill(Array(3).fill(null));
     const numbers = Array(9).fill(null);
+
+    function formatTime(seconds) {
+        seconds = Math.max(0, Math.floor(seconds));
+        const minutes = Math.floor(seconds / 60);
+        const hours = Math.floor(minutes / 60);
+        const remainingSeconds = seconds % 60;
+        const hoursFormatted = String(hours).padStart(2,'0');
+        const minutesFormatted = String(minutes).padStart(2,'0');
+        const secondsFormatted = String(remainingSeconds).padStart(2,'0');
+        return  `${hoursFormatted}:${minutesFormatted}:${secondsFormatted}`
+    }
     return (
         <>
+         <div className={BoardStyles.StatsBar}>
+            <p>Mode: <span>{mode.name}</span></p>
+            <p>Mistakes: {' '} <span>{mistake}/{totalMistakes}</span></p>
+            <p>Time: <span>{formatTime(time)}</span></p>
+         </div>
           <div className={BoardStyles.Main}>
             {squares.map((arr,row) => (
                 <div key={row} className={BoardStyles.Rows}>
