@@ -18,6 +18,34 @@
     height: 100%;
 }
 
+button {
+    margin: 4px 8px;
+}
+
+.NumContainer {
+    display: flex;
+    justify-content: space-around;
+    user-select: none;
+    width: 100%;
+}
+
+.NumRow {
+    color: white;
+    font-size: 24px;
+    background-color: rgb(30, 40, 200);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+    padding: 8px 16px;
+    margin: 20px 0;
+    outline: 1px solid white;
+    border-radius: 6px;
+    line-height: 32px;
+    cursor: pointer;
+}
+
+.NumRow:hover {
+    outline: 3px solid white;
+}
+
 @media (min-width: 768px) {
     .Main {
         width: 700px;
