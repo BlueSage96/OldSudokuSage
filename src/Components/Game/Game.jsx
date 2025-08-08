@@ -8,16 +8,24 @@ import { gameState } from '../../Store/GameState';
 function Game() {
     const navigate = useNavigate();
     const timeRef = useRef();
-    const { time, increaseTime, isStart, isPause, isComplete, hints, changeQBoard, resetQBoard, selectedCell } = gameState();
+    const { time, increaseTime, isStart, isPause, pauseGame, isComplete, hints, 
+            changeQBoard, resetQBoard, selectedCell } = gameState();
 
-    const  handleReset = useCallback(() => {
+    const handlePause = useCallback(() => {
+        pauseGame();
+    },[pauseGame]);
+
+    const handleReset = useCallback(() => {
         resetQBoard();
     },[resetQBoard]); 
 
     useEffect(() => {
         function handleKeyPress(event) {
             const isMetaKey = event.metaKey || event.ctrlKey;
-            if (event.key.toLowerCase() == 'r') {
+            if (event.key.toLowerCase() == 'p') {
+                handlePause();
+            }
+            else if (event.key.toLowerCase() == 'r') {
                 handleReset();
             }
 
@@ -30,7 +38,7 @@ function Game() {
         }
         document.addEventListener('keydown', handleKeyPress);
         return () => document.removeEventListener('keydown', handleKeyPress);
-    },[changeQBoard, handleReset,selectedCell]);
+    },[changeQBoard, handlePause, handleReset,selectedCell]);
 
     useEffect(() => {
         if (!isStart) {
@@ -47,7 +55,7 @@ function Game() {
                 <Board/>
                 <div className={GameStyles.ButtonDiv}>
                     <button className={GameStyles.Exit}><LogOut/></button>
-                    <button className={GameStyles.Pause}><Play/></button>
+                    <button className={GameStyles.Pause} onClick={handlePause}>{isPause ? <Play/> : <Pause/>}</button>
                     <button className={GameStyles.Undo}><Undo/></button>
                     <button className={GameStyles.Reset} onClick={handleReset}>Reset</button>
                     <button className={GameStyles.Redo}><Redo/></button>

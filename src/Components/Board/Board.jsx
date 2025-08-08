@@ -24,7 +24,13 @@ function Board() {
             <p>Mistakes: {' '} <span>{mistake}/{totalMistakes}</span></p>
             <p>Time: <span>{formatTime(time)}</span></p>
          </div>
+
           <div className={BoardStyles.Main}>
+            {isPause && (
+                <div className={BoardStyles.PauseOverlay}>
+                    <div className={BoardStyles.PauseDialog}>Paused</div>
+                </div>
+            )}
             {squares.map((arr,row) => (
                 <div key={row} className={BoardStyles.Rows}>
                     {arr.map((_,col) => (

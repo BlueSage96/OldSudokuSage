@@ -17,7 +17,7 @@ const Cells = CellStyle.div`
     &:hover { 
         outline: 4px solid skyblue;
         outline-offset: -2px;
-        z-index: 2px;
+        z-index: 2;
     }
 
    &.selected {
