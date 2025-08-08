@@ -6,7 +6,7 @@ const Squares = SquareStyles.div`
     flex-direction: column;
     gap: 1px;
     width: 100%;
-    height; 100%;
+    height: 100%;
 `;
 
 const MiniSquares = SquareStyles.div`

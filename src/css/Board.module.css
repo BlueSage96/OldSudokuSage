@@ -3,8 +3,9 @@
     justify-content: space-around;
     font-size: 20px;
     line-height: 28px;
-    width: 100%;
+    width: 40%;
 }
+
 .Main {
     display: flex;
     flex-direction: column;
@@ -12,9 +13,11 @@
     border: 8px solid white;
     border-radius: 8px;
     width: 100%;
-    /* height: 345px; */
+    max-width: 700px; 
+    /* justify-content: center;
+    align-items: center; */
     padding: 0;
-    margin: 0;
+    margin: 0 auto; 
     gap: 6px;
 }
 
@@ -33,7 +36,7 @@ button {
     display: flex;
     justify-content: space-around;
     user-select: none;
-    width: 100%;
+    width: 40%;
 }
 
 .NumRow {
@@ -55,8 +58,8 @@ button {
 
 @media (min-width: 768px) {
     .Main {
-        width: 700px;
-        height: 700px;
+        width: 685px;
+        height: 685px;
         padding: 0;
     }
 }

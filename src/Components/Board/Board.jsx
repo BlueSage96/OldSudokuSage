@@ -4,7 +4,7 @@ import { gameState } from '../../Store/GameState';
 
 function Board() {
     const { time, isPause, startGame, mistake, totalMistakes, isComplete, mode, changeQBoard, tryAgain } = gameState();
-    const squares = Array(3).fill(Array(3).fill(null));
+    const squares = Array.from({ length: 3 }, () => Array(3).fill(null));
     const numbers = Array(9).fill(null);
 
     function formatTime(seconds) {
@@ -19,11 +19,6 @@ function Board() {
     }
     return (
         <>
-         <div className={BoardStyles.StatsBar}>
-            <p>Mode: <span>{mode.name}</span></p>
-            <p>Mistakes: {' '} <span>{mistake}/{totalMistakes}</span></p>
-            <p>Time: <span>{formatTime(time)}</span></p>
-         </div>
          <div className={BoardStyles.StatsBar}>
             <p>Mode: <span>{mode.name}</span></p>
             <p>Mistakes: {' '} <span>{mistake}/{totalMistakes}</span></p>
