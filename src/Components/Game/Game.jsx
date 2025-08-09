@@ -42,6 +42,7 @@ function Game() {
                 handleQuit();
             } else if (event.key.toLowerCase() == 'p') {
                 handlePause();
+                if (isPause) return;
             } else if (event.key.toLowerCase() == 'r') {
                 handleReset();
             } else if (event.key.toLowerCase() == 'h') {
@@ -62,14 +63,14 @@ function Game() {
         }
         document.addEventListener('keydown', handleKeyPress);
         return () => document.removeEventListener('keydown', handleKeyPress);
-    },[changeQBoard, handleQuit, handlePause, handleReset, handleHint, selectedCell]);
+    },[changeQBoard, handleQuit, isPause, handlePause, handleUndo, handleReset, handleRedo, handleHint, selectedCell]);
 
     useEffect(() => {
         if (!isStart) {
             navigate('/', { replace: true });
         }
         timeRef.current = setInterval(() => {
-            if (!isPause && !isPause) increaseTime();
+            if (!isPause && !isComplete) increaseTime();
         }, 1000);
         return () => clearInterval(timeRef.current);
     },[time, increaseTime, isPause, isStart, isComplete, navigate]);

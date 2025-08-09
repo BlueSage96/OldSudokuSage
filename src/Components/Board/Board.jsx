@@ -31,6 +31,15 @@ function Board() {
                     <div className={BoardStyles.PauseDialog}>Paused</div>
                 </div>
             )}
+            {isComplete && (
+                <div className={BoardStyles.MistakesOverlay}>
+                    <div className={BoardStyles.MistakesDialog}>
+                        {mistake >= totalMistakes ? "All Mistakes Used!" : ""}
+                        <button className={BoardStyles.TryAgain} onClick={() => tryAgain()}>Try Again</button>
+                        <button className={BoardStyles.Restart} onClick={() => startGame(mode.key)}>Start New</button>
+                    </div>
+                </div>
+            )}
             {squares.map((arr,row) => (
                 <div key={row} className={BoardStyles.Rows}>
                     {arr.map((_,col) => (

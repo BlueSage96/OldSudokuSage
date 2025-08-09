@@ -39,7 +39,7 @@
     justify-content: center;
     align-items: center;
     z-index: 20;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 .PauseDialog {
@@ -56,11 +56,53 @@
     font-weight: bold;
     box-shadow: 0 0 2px rgba(0,0,0,0.4);
     z-index: 10;
-    pointer-events: none;
+    pointer-events: auto;
+}
+
+.MistakesOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(30,40,200,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    pointer-events: auto;
+}
+
+.MistakesDialog {
+    color: white;
+    background-color: rgb(30,40,200);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    padding: 16px 32px;
+    border: 2px solid white;
+    border-radius: 16px;
+    font-size: 40px;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    pointer-events: auto;
 }
 
 button {
     margin: 4px 8px;
+}
+
+.Restart, .TryAgain {
+    font-size: 25px;
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    border-radius: 8px;
+    padding: 8px;
+    position: relative;
+    bottom: 3px;
 }
 
 .NumContainer {
