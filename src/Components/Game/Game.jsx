@@ -8,7 +8,7 @@ import { gameState } from '../../Store/GameState';
 function Game() {
     const navigate = useNavigate();
     const timeRef = useRef();
-    const { time, increaseTime, isStart, isPause, pauseGame, isComplete, hints, 
+    const { time, increaseTime, isStart, isPause, pauseGame, isComplete, hints, giveHint,
             changeQBoard, resetQBoard, selectedCell } = gameState();
 
     const handlePause = useCallback(() => {
@@ -19,14 +19,19 @@ function Game() {
         resetQBoard();
     },[resetQBoard]); 
 
+    const handleHint = useCallback(() => {
+        giveHint();
+    },[giveHint]);
+
     useEffect(() => {
         function handleKeyPress(event) {
             const isMetaKey = event.metaKey || event.ctrlKey;
             if (event.key.toLowerCase() == 'p') {
                 handlePause();
-            }
-            else if (event.key.toLowerCase() == 'r') {
+            } else if (event.key.toLowerCase() == 'r') {
                 handleReset();
+            } else if (event.key.toLowerCase() == 'h') {
+                handleHint();
             }
 
             if (!selectedCell) return;
@@ -38,7 +43,7 @@ function Game() {
         }
         document.addEventListener('keydown', handleKeyPress);
         return () => document.removeEventListener('keydown', handleKeyPress);
-    },[changeQBoard, handlePause, handleReset,selectedCell]);
+    },[changeQBoard, handleReset, handlePause, handleHint, selectedCell]);
 
     useEffect(() => {
         if (!isStart) {
@@ -61,7 +66,7 @@ function Game() {
                     <button className={GameStyles.Redo}><Redo/></button>
                     <button className={GameStyles.Eraser}><Eraser/></button>
                     <button className={GameStyles.Pencil}><PencilLine/></button>
-                    <button className={GameStyles.Bulb}>
+                    <button className={GameStyles.Bulb} onClick={handleHint}>
                         <span className={GameStyles.Hints}>{hints}</span>
                         <Lightbulb/></button>
                 </div>
