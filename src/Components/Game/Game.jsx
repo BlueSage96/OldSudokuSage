@@ -9,7 +9,7 @@ function Game() {
     const navigate = useNavigate();
     const timeRef = useRef();
     const { time, increaseTime, isStart, isPause, pauseGame, isComplete, hints, giveHint,
-            changeQBoard, resetQBoard, selectedCell, quitGame } = gameState();
+            changeQBoard, resetQBoard, selectedCell, undoMove, redoMove, quitGame } = gameState();
 
     const handleQuit = useCallback(() => {
         quitGame();
@@ -19,9 +19,17 @@ function Game() {
         pauseGame();
     },[pauseGame]);
 
+    const handleUndo = useCallback(() => {
+        undoMove();
+    },[undoMove]);
+
     const handleReset = useCallback(() => {
         resetQBoard();
     },[resetQBoard]); 
+
+    const handleRedo = useCallback(() => {
+        redoMove();
+    },[redoMove]);
 
     const handleHint = useCallback(() => {
         giveHint();
@@ -38,6 +46,11 @@ function Game() {
                 handleReset();
             } else if (event.key.toLowerCase() == 'h') {
                 handleHint();
+            } else if (isMetaKey && event.key.toLowerCase() == 'z') {
+                event.preventDefault();
+                handleUndo();
+            } else if (isMetaKey && event.key.toLowerCase() == 'y') {
+                handleRedo();
             }
 
             if (!selectedCell) return;
@@ -67,9 +80,9 @@ function Game() {
                 <div className={GameStyles.ButtonDiv}>
                     <button className={GameStyles.Exit} onClick={handleQuit}><LogOut/></button>
                     <button className={GameStyles.Pause} onClick={handlePause}>{isPause ? <Play/> : <Pause/>}</button>
-                    <button className={GameStyles.Undo}><Undo/></button>
+                    <button className={GameStyles.Undo} onClick={handleUndo}><Undo/></button>
                     <button className={GameStyles.Reset} onClick={handleReset}>Reset</button>
-                    <button className={GameStyles.Redo}><Redo/></button>
+                    <button className={GameStyles.Redo} onClick={handleRedo}><Redo/></button>
                     <button className={GameStyles.Eraser}><Eraser/></button>
                     <button className={GameStyles.Pencil}><PencilLine/></button>
                     <button className={GameStyles.Bulb} onClick={handleHint}>
