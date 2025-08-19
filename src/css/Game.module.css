@@ -9,6 +9,17 @@
     box-sizing: border-box; 
 }
 
+.ButtonDiv {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.pencilActive {
+    color: green;
+}
+
 .Hints {
     display: flex;
     color: white;

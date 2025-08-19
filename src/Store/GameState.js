@@ -136,7 +136,7 @@ export const gameState = create(
                             pencilValue = [...pencilValue, element].sort();
                         }
                         qBoard[row][col] = {
-                            ...qBoard[row][col], value: element, pencilValue
+                            ...qBoard[row][col], pencilValue
                         };  
                     } else {
                         qBoard[row][col] = {

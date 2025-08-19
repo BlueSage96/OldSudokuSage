@@ -8,8 +8,8 @@ import { gameState } from '../../Store/GameState';
 function Game() {
     const navigate = useNavigate();
     const timeRef = useRef();
-    const { time, increaseTime, isStart, isPause, pauseGame, isComplete, hints, giveHint,
-            changeQBoard, resetQBoard, selectedCell, undoMove, redoMove, quitGame } = gameState();
+    const { time, increaseTime, isStart, isPause, pauseGame, isComplete, pencilMode, togglePencilMode, 
+            hints, giveHint, changeQBoard, resetQBoard, selectedCell, undoMove, redoMove, quitGame } = gameState();
 
     const handleQuit = useCallback(() => {
         quitGame();
@@ -38,6 +38,9 @@ function Game() {
     useEffect(() => {
         function handleKeyPress(event) {
             const isMetaKey = event.metaKey || event.ctrlKey;
+            let newRow = selectedCell.row;
+            let newCol = selectedCell.col;
+
             if (event.key.toLowerCase() == 'q') {
                 handleQuit();
             } else if (event.key.toLowerCase() == 'p') {
@@ -52,6 +55,16 @@ function Game() {
                 handleUndo();
             } else if (isMetaKey && event.key.toLowerCase() == 'y') {
                 handleRedo();
+            } 
+            // not working!!
+            else if (event.key.toLowerCase() == 'w' || event.keyCode == 38) {
+                newRow = Math.max(0, selectedCell.row - 1);
+            } else if (event.key.toLowerCase() == 's' || event.keyCode == 40) {
+                newRow = Math.min(8, selectedCell.row + 1);
+            } else if (event.key.toLowerCase() == 'a' || event.keyCode == 37) {
+                newCol = Math.max(0, selectedCell.col - 1);
+            } else if (event.key.toLowerCase() == 'd' || event.keyCode == 39) {
+                newCol = Math.min(8, selectedCell.col + 1);
             }
 
             if (!selectedCell) return;
@@ -74,6 +87,7 @@ function Game() {
         }, 1000);
         return () => clearInterval(timeRef.current);
     },[time, increaseTime, isPause, isStart, isComplete, navigate]);
+
     return (
         <>
             <div className={GameStyles.Container}>
@@ -85,7 +99,9 @@ function Game() {
                     <button className={GameStyles.Reset} onClick={handleReset}>Reset</button>
                     <button className={GameStyles.Redo} onClick={handleRedo}><Redo/></button>
                     <button className={GameStyles.Eraser}><Eraser/></button>
-                    <button className={GameStyles.Pencil}><PencilLine/></button>
+
+                    <button className={`${GameStyles.Pencil} ${GameStyles.button} ${pencilMode ? GameStyles.pencilActive: ''}`}
+                    onClick={togglePencilMode}><PencilLine/></button>
                     <button className={GameStyles.Bulb} onClick={handleHint}>
                         <span className={GameStyles.Hints}>{hints}</span>
                         <Lightbulb/></button>
@@ -94,4 +110,5 @@ function Game() {
         </>
     )
 }
+
 export default Game;
