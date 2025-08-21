@@ -127,8 +127,10 @@ export const gameState = create(
                     let qBoard = JSON.parse(JSON.stringify(state.qBoard));
                     const query = {};
 
+                    // pencil functionality
                     if (state.pencilMode) {
                         let pencilValue = qBoard[row][col].pencilValue;
+                        // add 1-9 pencil values to array for notes
                         if (!Array.isArray(pencilValue)) pencilValue = [];
                         if (pencilValue.includes(element)) {
                             pencilValue = pencilValue.filter((val) => val !== element);
@@ -142,6 +144,8 @@ export const gameState = create(
                         qBoard[row][col] = {
                             ...qBoard[row][col], value: element, pencilValue: [] //clear pencil notes
                         };
+
+                        // mistakes counter
                         if (element !== state.board[row][col]) {
                             query.mistake = state.mistake + 1;
                         }
