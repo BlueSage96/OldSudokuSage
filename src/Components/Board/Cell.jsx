@@ -54,8 +54,8 @@ const PencilValue = CellStyle.span`
   color: #16a34a; /* green-600 */
   font-size: 18px;
   position: absolute;
-  top: -0.25rem;
-  right: 0.25rem; //18px
+  top: -4px;
+  right: 18px; //18px
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -86,17 +86,16 @@ function Cell({ row, col }) {
   }
 
   function isSelected() {
+    // determines what cell(s) are highlighted with each click
     const query = { other: false, current: false };
     if (selectedCell.cell) {
+      // highlight for block
       selectedCell.squares.forEach((sq) => {
           if (sq[0] === row && sq[1] === col) query.other = true;
       });
-      if (selectedCell.row === row) query.other = true;
-      if (selectedCell.col === col) query.other = true;
-      
-      if (qBoard[row][col].value === qBoard[selectedCell.row][selectedCell.col].value && qBoard[row][col].value !== 0) {
-         query.other = true;
-      }
+      // highlight for row & col
+      if (selectedCell.row === row || selectedCell.col === col) query.other = true;
+    //  highlight for single cell
       if (selectedCell.cell.row === row && selectedCell.cell.col === col) {
          query.current = true;
       }
@@ -112,8 +111,12 @@ function Cell({ row, col }) {
             {qBoard[row][col].value !== 0 && (
                 <CellValue className={qBoard[row][col].default ? 'default' : qBoard[row][col].value === board[row][col] ? 
                   'correct' : 'incorrect'}>{qBoard[row][col].value}</CellValue>)}
-            {qBoard?.[row]?.[col]?.pencilValue?.length > 0 && !qBoard[row][col].default && (
-                <PencilValue>{qBoard[row][col].pencilValue}</PencilValue>
+            {Array.isArray(qBoard[row][col].pencilValue) && qBoard[row][col].pencilValue.length > 0 && !qBoard[row][col].default && (
+                <PencilValue>
+                  {Array(9).fill(null).map((_,i) => (
+                     <span key={i}>{qBoard[row][col].pencilValue.includes(i + 1) ? i + 1: ""}</span>
+                  ))}
+                </PencilValue>
             )}
         </Cells>
       </>
