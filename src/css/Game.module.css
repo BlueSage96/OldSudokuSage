@@ -16,7 +16,7 @@
     justify-content: center;
 }
 
-.pencilActive {
+.pencilActive, .eraserActive {
     color: green;
 }
 

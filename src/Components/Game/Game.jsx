@@ -9,8 +9,8 @@ function Game() {
     const navigate = useNavigate();
     const timeRef = useRef();
     const { time, increaseTime, isStart, isPause, pauseGame, isComplete, pencilMode, togglePencilMode, 
-            hints, giveHint, changeQBoard, resetQBoard, selectedCell, setSelectedCell, undoMove, redoMove, 
-            quitGame } = gameState();
+            eraserMode, toggleEraserMode, hints, giveHint, changeQBoard, resetQBoard, selectedCell, setSelectedCell, 
+            undoMove, redoMove, quitGame } = gameState();
 
     const handleQuit = useCallback(() => {
         quitGame();
@@ -36,27 +36,32 @@ function Game() {
         giveHint();
     },[giveHint]);
 
+    const handleErase = useCallback(() => {
+        // only erase if button is activated
+        if (eraserMode) changeQBoard(0);
+    },[eraserMode, changeQBoard]);
+
     useEffect(() => {
         function handleKeyPress(event) {
             const isMetaKey = event.metaKey || event.ctrlKey;
-    
-
             // use 'e' for erasing!!
             if (event.key.toLowerCase() == 'q') {
                 handleQuit();
             } else if (event.key.toLowerCase() == 'p') {
                 handlePause();
                 if (isPause) return;
-            } else if (event.key.toLowerCase() == 'r') {
-                handleReset();
-            } else if (event.key.toLowerCase() == 'h') {
-                handleHint();
-            } else if (isMetaKey && event.key.toLowerCase() == 'z') {
+            }  else if (isMetaKey && event.key.toLowerCase() == 'z') {
                 event.preventDefault();
                 handleUndo();
+            } else if (event.key.toLowerCase() == 'r') {
+                handleReset();
             } else if (isMetaKey && event.key.toLowerCase() == 'y') {
                 handleRedo();
-            } 
+            } else if (event.key.toLowerCase() == 'e') {
+                if (eraserMode) handleErase();
+            } else if (event.key.toLowerCase() == 'h') {
+                handleHint();
+            }
            
             let r = selectedCell.row;
             let c = selectedCell.col;
@@ -104,7 +109,8 @@ function Game() {
         }
         document.addEventListener('keydown', handleKeyPress);
         return () => document.removeEventListener('keydown', handleKeyPress);
-    },[changeQBoard, handleQuit, isPause, handlePause, handleUndo, handleReset, handleRedo, handleHint, selectedCell, setSelectedCell]);
+    },[changeQBoard, handleQuit, isPause, handlePause, handleUndo, handleReset, handleRedo, 
+        handleHint, selectedCell, setSelectedCell, handleErase, eraserMode]);
 
     useEffect(() => {
         if (!isStart) {
@@ -126,8 +132,8 @@ function Game() {
                     <button className={GameStyles.Undo} onClick={handleUndo}><Undo/></button>
                     <button className={GameStyles.Reset} onClick={handleReset}>Reset</button>
                     <button className={GameStyles.Redo} onClick={handleRedo}><Redo/></button>
-                    <button className={GameStyles.Eraser}><Eraser/></button>
 
+                    <button className={`${GameStyles.Eraser} ${GameStyles.button} ${eraserMode ? GameStyles.eraserActive: ''}`} onClick={toggleEraserMode}><Eraser/></button>
                     <button className={`${GameStyles.Pencil} ${GameStyles.button} ${pencilMode ? GameStyles.pencilActive: ''}`}
                     onClick={togglePencilMode}><PencilLine/></button>
                     <button className={GameStyles.Bulb} onClick={handleHint}>
