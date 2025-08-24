@@ -8,6 +8,7 @@ const initialState = {
     isPause: false,
     isComplete: false,
     pencilMode: false,
+    eraserMode: false,
     mistake: 0,
     totalMistakes: 5,
     hints: 0,
@@ -84,7 +85,9 @@ export const gameState = create(
                     allEntries: [],
                     selectedCell: { row: null, col: null, squares: null, cell: null },
                     history: [JSON.stringify(data.unsolvedBoard)],
-                    currentIndex: 0
+                    currentIndex: 0,
+                    pencilMode: false,
+                    eraserMode: false
                 };
                 set(newState);
             },
@@ -102,6 +105,7 @@ export const gameState = create(
                              allEntries: [], mistake: 0, isPause: false, isComplete: false, time: 0, 
                              hints: MODES[state.mode.key].hints, history: [JSON.stringify(state.originalQBoard)],
                              selectedCell: { row: null, col: null, squares: null, cell: null}, currentIndex: 0,
+                             pencilMode: false, eraserMode: false,
                            };
                 });
             },
@@ -115,6 +119,9 @@ export const gameState = create(
             togglePencilMode: () => {
                 set((state) => ({ ...state, pencilMode: !state.pencilMode }));
             },
+            toggleEraserMode: () => {
+                set((state) => ({ ...state, eraserMode: !state.eraserMode}));//shows eraser active (green)
+            },
             changeQBoard: (element) => {
                 set((state) => {
                     const row = state.selectedCell.row;
@@ -127,8 +134,26 @@ export const gameState = create(
                     let qBoard = JSON.parse(JSON.stringify(state.qBoard));
                     const query = {};
 
+                    // eraser functionality
+                    if (state.eraserMode) {
+                      // clear user input & notes
+                      const copy = qBoard.map((r) => r.slice());
+                      copy[row][col] = {
+                        ...copy[row][col],
+                        value: 0,
+                        pencilValue: []
+                      };
+                      // mistakes counter
+                      if (element != state.board[row][col]) {
+                        query.mistake = state.mistake + 1;
+                      }
+                      return { ...state, qBoard: copy}
+                    }
+
+                    // pencil functionality
                     if (state.pencilMode) {
                         let pencilValue = qBoard[row][col].pencilValue;
+                        // add 1-9 pencil values to array for notes
                         if (!Array.isArray(pencilValue)) pencilValue = [];
                         if (pencilValue.includes(element)) {
                             pencilValue = pencilValue.filter((val) => val !== element);
@@ -142,6 +167,8 @@ export const gameState = create(
                         qBoard[row][col] = {
                             ...qBoard[row][col], value: element, pencilValue: [] //clear pencil notes
                         };
+
+                        // mistakes counter
                         if (element !== state.board[row][col]) {
                             query.mistake = state.mistake + 1;
                         }
