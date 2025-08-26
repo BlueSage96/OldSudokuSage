@@ -26,19 +26,19 @@
 
 .Settings {
     width: 150px;
-    left: 200px;
+    left: 600px;
     top: 10px;
 }
 
 .Controls {
     width: 190px;
-    left: 400px;
+    left: 775px;
     top: -25px;
 }
 
 .Inst {
     width: 160px;
-    right: 200px;
+    right: 575px;
     top: 10px;
 }
 
