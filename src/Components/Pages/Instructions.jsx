@@ -4,7 +4,7 @@ function Instructions() {
      const navigate = useNavigate();
      return (
        <>
-         <h1>Inst</h1>
+         <h1>Instructions</h1>
          <button className={InstStyle.backButton} onClick={() => navigate(-1)}>
            &larr; Back
          </button>

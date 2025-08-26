@@ -18,10 +18,28 @@
     align-items: center;
 }
 
-.Start, .Resume {
+.Settings, .Controls, .Inst, .Start, .Resume {
     border-radius: 8px;
     padding: 8px;
     position: absolute;
+}
+
+.Settings {
+    width: 150px;
+    left: 200px;
+    top: 10px;
+}
+
+.Controls {
+    width: 190px;
+    left: 400px;
+    top: -25px;
+}
+
+.Inst {
+    width: 160px;
+    right: 200px;
+    top: 10px;
 }
 
 .Start {
