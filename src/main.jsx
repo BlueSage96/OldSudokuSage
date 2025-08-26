@@ -4,7 +4,7 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import './css/index.css';
 import App from './App.jsx';
 import Game from './Components/Game/Game';
-import Menu from './Components/Menu/Menu';
+import Menu from './Components/Pages/Menu.jsx';
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
