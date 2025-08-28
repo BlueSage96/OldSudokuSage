@@ -1,0 +1,53 @@
+.NavBar {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* justify-content: left; */
+}
+
+  .NavItem {
+    display: flex;
+    position: relative;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    gap: 0.5rem;
+    transition: color 0.3s;
+  }
+
+  .NavItem:hover span {
+    color: red;
+  }
+
+  .NavItem span {
+    color: white;
+  }
+
+  .activeLink span {
+    color: red;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .Settings, .Controls, .Inst, .Menu {
+    position: absolute;
+    width: 100px;
+    left: 400px;
+  }
+
+  .Settings {
+     top: 100px;
+  }
+
+  .Controls {
+    top: 250px;
+  }
+
+  .Inst {
+     top: 400px;
+  }
+
+  .Menu {
+    top: 550px;
+  }

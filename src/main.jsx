@@ -12,8 +12,8 @@ import Instructions from './Components/Pages/Instructions';
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route path="" element={<Menu />} />
+    <Route path="" element={<App />}>
+      <Route path="/" element={<Menu />} />
       <Route path="/game" element={<Game />} />
       <Route path="/settings" element={<Settings/>}/>
       <Route path="/controls" element={<Controls/>}/>
