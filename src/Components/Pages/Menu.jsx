@@ -25,10 +25,10 @@ const Selection = MenuButtonStyles.select`
    border: 4px solid rgb(81,35,8);
    border-radius: 8px;
    text-shadow: 1px 1px black;
-   padding: 8px;
+   padding: 7px;
    position: absolute;
-   bottom: 40px;
-   right: 650px;
+   bottom: 105px;
+   right: 640px;
 `;
 
 function Menu() {
