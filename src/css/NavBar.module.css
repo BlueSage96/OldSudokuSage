@@ -1,53 +1,53 @@
 .NavBar {
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* justify-content: left; */
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-  .NavItem {
-    display: flex;
-    position: relative;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-    gap: 0.5rem;
-    transition: color 0.3s;
-  }
+.NavItem {
+  display: flex;
+  position: relative;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  gap: 0.5rem;
+  transition: color 0.3s;
+}
 
-  .NavItem:hover span {
-    color: red;
-  }
+.NavItem:hover span {
+  color: red;
+}
 
-  .NavItem span {
-    color: white;
-  }
+.NavItem span {
+  color: white;
+}
 
-  .activeLink span {
-    color: red;
-    cursor: pointer;
-    font-weight: bold;
-  }
+.activeLink span {
+  color: red;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-  .Settings, .Controls, .Inst, .Menu {
-    position: absolute;
-    width: 100px;
-    left: 400px;
-  }
+.Settings, .Controls, .Inst, .Menu {
+  position: absolute;
+  width: 125px;
+  height: 125px;
+  left: 375px;
+}
 
-  .Settings {
-     top: 100px;
-  }
+.Settings {
+  top: 150px;
+}
 
-  .Controls {
-    top: 250px;
-  }
+.Controls {
+  top: 300px;
+}
 
-  .Inst {
-     top: 400px;
-  }
+.Inst {
+  top: 450px;
+}
 
-  .Menu {
-    top: 550px;
-  }
+.Menu {
+  top: 600px;
+}

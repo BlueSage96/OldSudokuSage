@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import ControlsStyle from '../../css/Controls.module.css';
+import Nav from '../UI/NavBar';
 function Controls() {
      const navigate = useNavigate();
      return (
@@ -8,6 +9,7 @@ function Controls() {
          <button className={ControlsStyle.backButton} onClick={() => navigate(-1)}>
            &larr; Back
          </button>
+         <Nav/>
        </>
      );
 }
