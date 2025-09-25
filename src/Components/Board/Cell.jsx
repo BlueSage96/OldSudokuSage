@@ -1,29 +1,29 @@
 import CellStyle from 'styled-components';
 // Draw individuals cells & styling
 const Cells = CellStyle.div`
-    user-select: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(30,40,200);
-    outline: 1px solid transparent';
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    border-radius: 0.375rem;
-    position: relative;
-    cursor: pointer;
-    transition: background-color 0.2s, outline 0.2s;
-      
-    &:hover { 
-        outline: 4px solid skyblue;
-        outline-offset: -2px;
-        z-index: 2;
-    }
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(30,40,200);
+  outline: 1px solid transparent;
+  flex: 1 1 0;
+  aspect-ratio: 1 / 1;
+  border-radius: 0.375rem;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s, outline 0.2s;
 
-   &.selected {
+  &:hover { 
+    outline: 4px solid skyblue;
+    outline-offset: -2px;
+    z-index: 2;
+  }
+
+  &.selected {
     background-color: black; 
     outline: 2px solid #3b82f6; 
-   }
+  }
 
   &.related {
     background-color: black;
@@ -80,9 +80,9 @@ function Cell({ row, col }) {
   const cellRef = useRef();
 
   function handleClick() {
-     if (isPause) return;
-     cellRef.current?.focus();
-     setSelectedCell(row, col);
+    if (isPause) return;
+    cellRef.current?.focus();
+    setSelectedCell(row, col);
   }
 
   function isSelected() {
@@ -91,35 +91,37 @@ function Cell({ row, col }) {
     if (selectedCell.cell) {
       // highlight for block
       selectedCell.squares.forEach((sq) => {
-          if (sq[0] === row && sq[1] === col) query.other = true;
+        if (sq[0] === row && sq[1] === col) query.other = true;
       });
       // highlight for row & col
       if (selectedCell.row === row || selectedCell.col === col) query.other = true;
-    //  highlight for single cell
+      //  highlight for single cell
       if (selectedCell.cell.row === row && selectedCell.cell.col === col) {
-         query.current = true;
+        query.current = true;
       }
     }
     return query;
   }
 
   const { current, other } = isSelected();
-  
+
   return (
-      <>
-        <Cells ref={cellRef} onClick={handleClick} className={`${current ? 'selected' : ''} ${other ? 'related' : ''}`}>
-            {qBoard[row][col].value !== 0 && (
-                <CellValue className={qBoard[row][col].default ? 'default' : qBoard[row][col].value === board[row][col] ? 
-                  'correct' : 'incorrect'}>{qBoard[row][col].value}</CellValue>)}
-            {Array.isArray(qBoard[row][col].pencilValue) && qBoard[row][col].pencilValue.length > 0 && !qBoard[row][col].default && (
-                <PencilValue>
-                  {Array(9).fill(null).map((_,i) => (
-                     <span key={i}>{qBoard[row][col].pencilValue.includes(i + 1) ? i + 1: ""}</span>
-                  ))}
-                </PencilValue>
-            )}
-        </Cells>
-      </>
+    <>
+      <Cells ref={cellRef} onClick={handleClick} className={`${current ? 'selected' : ''} ${other ? 'related' : ''}`}>
+        {qBoard[row][col].value !== 0 && (
+          <CellValue className={qBoard[row][col].default ? 'default' : qBoard[row][col].value === board[row][col] ? 'correct' : 'incorrect'}>{qBoard[row][col].value}</CellValue>
+        )}
+        {Array.isArray(qBoard[row][col].pencilValue) && qBoard[row][col].pencilValue.length > 0 && !qBoard[row][col].default && (
+          <PencilValue>
+            {Array(9)
+              .fill(null)
+              .map((_, i) => (
+                <span key={i}>{qBoard[row][col].pencilValue.includes(i + 1) ? i + 1 : ''}</span>
+              ))}
+          </PencilValue>
+        )}
+      </Cells>
+    </>
   );
 }
 export default Cell;

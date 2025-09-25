@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Pause, Play,  Undo, Redo,  Eraser, PencilLine, Lightbulb, } from 'lucide-react';
+import { LogOut, Pause, Play,  Undo, Redo,  Eraser, PencilLine, Lightbulb } from 'lucide-react';
 import GameStyles from '../../css/Game.module.css';
 import Board from '../Board/Board';
 import { gameState } from '../../Store/GameState';

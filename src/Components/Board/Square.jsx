@@ -4,14 +4,14 @@ import SquareStyles from 'styled-components';
 const Squares = SquareStyles.div`
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 2px;
     width: 100%;
     height: 100%;
 `;
 
 const MiniSquares = SquareStyles.div`
     display: flex;
-    gap: 1px;
+    gap: 2px;
     width: 100%;
     height: 100%;
 `;

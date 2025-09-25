@@ -9,7 +9,7 @@ const Apps = AppStyles.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    // gap: 40px;
 `;
 
 function App() {
