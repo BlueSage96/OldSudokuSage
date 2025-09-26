@@ -1,9 +1,10 @@
 import BoardStyles from '../../css/Board.module.css';
-import Cell from './Cell';
+import Squares from './Square';
 import { gameState } from '../../Store/GameState';
 
 function Board() {
   const { time, isPause, startGame, mistake, totalMistakes, isComplete, mode, changeQBoard, tryAgain } = gameState();
+  const squares = Array(3).fill(null).map(() => Array(3).fill(null));
   const numbers = Array(9).fill(null);
 
   function formatTime(seconds) {
@@ -52,18 +53,13 @@ function Board() {
             </div>
           </div>
         )}
-        {/* Render 9x9 grid of cells */}
-        {Array.from({ length: 9 * 9 }).map((_, idx) => {
-          const row = Math.floor(idx / 9);
-          const col = idx % 9;
-          // Add sudoku-cell class for custom borders
-          return (
-            <div className="sudoku-cell" key={`${row}-${col}`}>
-              {' '}
-              <Cell row={row} col={col} />{' '}
-            </div>
-          );
-        })}
+        {squares.map((arr, row) => (
+          <div key={row} className={BoardStyles.Rows}>
+            {arr.map((_, col) => (
+              <Squares key={col} row={row} col={col} />
+            ))}
+          </div>
+        ))}
       </div>
       {/* Row of numbers below the board */}
       <div className={BoardStyles.NumContainer}>

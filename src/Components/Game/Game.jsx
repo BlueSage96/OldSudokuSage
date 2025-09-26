@@ -126,7 +126,7 @@ function Game() {
     return (
         <>
             <div className={GameStyles.Container}>
-                <Nav/>
+                {/* <Nav/> */}
                 <Board/>
                 <div className={GameStyles.ButtonDiv}>
                     <button className={GameStyles.Exit} onClick={handleQuit}><LogOut/></button>

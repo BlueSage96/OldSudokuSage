@@ -1,29 +1,34 @@
 import CellStyle from 'styled-components';
 // Draw individuals cells & styling
 const Cells = CellStyle.div`
-  user-select: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(30,40,200);
-  outline: 1px solid transparent;
-  flex: 1 1 0;
-  aspect-ratio: 1 / 1;
-  border-radius: 0.375rem;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.2s, outline 0.2s;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%; 
+    height: 100%; 
+    cursor: pointer; 
+    user-select: none; 
+    background-color: rgb(30,40,200);
+    outline: 1px solid transparent;
+    border-radius: 8px;
+    
+    // width: 100%;
+    // aspect-ratio: 1 / 1;
+    // 
+    // position: relative;
+    // cursor: pointer;
+    // transition: background-color 0.2s, outline 0.2s;
+      
+    &:hover { 
+        outline: 4px solid skyblue;
+        outline-offset: -2px;
+        z-index: 2;
+    }
 
-  &:hover { 
-    outline: 4px solid skyblue;
-    outline-offset: -2px;
-    z-index: 2;
-  }
-
-  &.selected {
+   &.selected {
     background-color: black; 
     outline: 2px solid #3b82f6; 
-  }
+   }
 
   &.related {
     background-color: black;

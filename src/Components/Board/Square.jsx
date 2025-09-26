@@ -18,7 +18,7 @@ const MiniSquares = SquareStyles.div`
 
 // 3x3 squares
 function Square({ row, col }) {
-  const squares = Array.from({ length: 3 }, () => Array(3).fill(null));
+  const squares = Array(3).fill(null).map(() => Array(3).fill(null));
   return (
     <>
       <Squares>
