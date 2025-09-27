@@ -2,7 +2,7 @@
   display: flex;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 425px;
 }
 
 .NavItem {
@@ -31,9 +31,8 @@
 
 .Settings, .Controls, .Inst, .Menu {
   position: absolute;
-  width: 125px;
-  height: 125px;
-  left: 375px;
+  width: 75px;
+  height: 75px;
 }
 
 .Settings {
@@ -41,13 +40,74 @@
 }
 
 .Controls {
-  top: 300px;
+  top: 250px;
 }
 
 .Inst {
-  top: 450px;
+  top: 350px;
 }
 
 .Menu {
-  top: 600px;
+  top: 450px;
+}
+
+@media screen and (min-width: 1600px) and (max-width: 1700px) {
+  .NavBar {
+    left: 375px;
+  }
+}
+
+@media screen and (min-width: 1500px) and (max-width: 1600px) {
+  .NavBar {
+    left: 325px;
+  }
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1500px) {
+  .NavBar {
+    left: 275px;
+  }
+}
+
+
+@media screen and (min-width: 1300px) and (max-width: 1400px) {
+  .NavBar {
+    left: 225px;
+  }
+}
+
+
+@media screen and (min-width: 1200px) and (max-width: 1300px) {
+  .NavBar {
+    left: 175px;
+  }
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1200px) {
+  .NavBar {
+    left: 125px;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1100px) {
+  .NavBar {
+    left: 75px;
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1000px) {
+  .NavBar {
+    left: 25px;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+  .NavBar {
+    left: 5px;
+  }
+
+  .Settings, .Controls, .Inst, .Menu {
+    width: 50px;
+    height: 50px;
+  }
 }
