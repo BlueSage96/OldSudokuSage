@@ -4,21 +4,21 @@ import SquareStyles from 'styled-components';
 const Squares = SquareStyles.div`
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 2px;
     width: 100%;
     height: 100%;
 `;
 
 const MiniSquares = SquareStyles.div`
     display: flex;
-    gap: 1px;
+    gap: 2px;
     width: 100%;
     height: 100%;
 `;
 
 // 3x3 squares
 function Square({ row, col }) {
-  const squares = Array.from({ length: 3 }, () => Array(3).fill(null));
+  const squares = Array(3).fill(null).map(() => Array(3).fill(null));
   return (
     <>
       <Squares>

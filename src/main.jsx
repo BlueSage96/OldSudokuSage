@@ -4,13 +4,20 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import './css/index.css';
 import App from './App.jsx';
 import Game from './Components/Game/Game';
-import Menu from './Components/Menu/Menu';
+
+import Menu from './Components/Pages/Menu.jsx';
+import Settings from './Components/Pages/Settings';
+import Controls from './Components/Pages/Controls';
+import Instructions from './Components/Pages/Instructions';
 
 const routes = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route path="" element={<Menu />} />
+    <Route path="" element={<App />}>
+      <Route path="/" element={<Menu />} />
       <Route path="/game" element={<Game />} />
+      <Route path="/settings" element={<Settings/>}/>
+      <Route path="/controls" element={<Controls/>}/>
+      <Route path="/instructions" element={<Instructions/>}/>
     </Route>
   )
 );

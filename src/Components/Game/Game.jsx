@@ -1,9 +1,10 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Pause, Play,  Undo, Redo,  Eraser, PencilLine, Lightbulb, } from 'lucide-react';
+import { LogOut, Pause, Play,  Undo, Redo,  Eraser, PencilLine, Lightbulb } from 'lucide-react';
 import GameStyles from '../../css/Game.module.css';
 import Board from '../Board/Board';
 import { gameState } from '../../Store/GameState';
+import Nav from '../UI/NavBar';
 
 function Game() {
     const navigate = useNavigate();
@@ -125,6 +126,7 @@ function Game() {
     return (
         <>
             <div className={GameStyles.Container}>
+                <Nav/>
                 <Board/>
                 <div className={GameStyles.ButtonDiv}>
                     <button className={GameStyles.Exit} onClick={handleQuit}><LogOut/></button>

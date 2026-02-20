@@ -7,18 +7,15 @@
 }
 
 .Main {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    border: 8px solid white;
-    border-radius: 8px;
-    width: 100%;
-    max-width: 700px; 
-    /* justify-content: center;
-    align-items: center; */
-    padding: 0;
-    margin: 0 auto; 
-    gap: 6px;
+  display: flex;
+  padding: 0.5rem; 
+  flex-direction: column; 
+  background-color: white;
+  border: 8px solid white;
+  border-radius: 8px;
+  width: 100vw;
+  height: 50vh;
+  gap: 12px;
 }
 
 .Rows {
@@ -118,7 +115,7 @@ button {
     background-color: rgb(30, 40, 200);
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
     padding: 8px 16px;
-    margin: 20px 0;
+    margin: 20px 6px;
     outline: 1px solid white;
     border-radius: 6px;
     line-height: 32px;

@@ -4,12 +4,12 @@ import './css/App.css';
 
 const Apps = AppStyles.div`
     height: 900px;
-    overflow: hidden;
+    // overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 10px;
 `;
 
 function App() {

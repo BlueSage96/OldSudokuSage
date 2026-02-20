@@ -1,10 +1,10 @@
 .Title {
     position: absolute;
-    top: 50%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: auto;
-    height: 98vh;
+    height: 90vh;
     z-index: -1;
     border: 8px solid white;
     border-radius: 8px;
@@ -18,22 +18,41 @@
     align-items: center;
 }
 
-.Start, .Resume {
+.Settings, .Controls, .Inst, .Start, .Resume {
     border-radius: 8px;
     padding: 8px;
     position: absolute;
 }
 
+.Settings {
+    width: 150px;
+    left: 630px;
+    top: 25px;
+}
+
+.Controls {
+    width: 150px;
+    left: 790px;
+    top: 25px;
+}
+
+.Inst {
+    width: 160px;
+    height: 58px;
+    right: 620px;
+    top: 25px;
+}
+
 .Start {
     width: 100px;
     height: 60px;
-    top: 910px;
+    bottom: 95px;
     left: 650px;
 }
 
 .Resume {
     width: 160px;
-    top: 910px;
+    bottom: 95px;
     left: 760px;
 }
 
